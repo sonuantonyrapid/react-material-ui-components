@@ -6,6 +6,8 @@ import Input from '../UI/Input/Input';
 
 import CheckBox from '../UI/CheckBox/CheckBox';
 
+import Radio from '../UI/Radio/RadioInput';
+
 // import InputFieldsStyle from './InputFields.module.css';
 
 
@@ -13,17 +15,19 @@ const InputFields = React.memo((props) => {
 
     const updateHandeler = (event) => {
 
-        props.change(event.target.id,event.target.value);
+        props.change(event.target.id,event.target.type,event.target.value);
         
     }
 
     const inputContent = props.fields.map(value=>{
 
            switch(value.fieldType){
-                case 'input':
+                case 'text':
                     return <Input value={value} key={value.id} change={updateHandeler}/>;
-                case 'checkBox':
+                case 'checkbox':
                     return <CheckBox value={value} key={value.id} change={updateHandeler}/>;
+                case 'radio':
+                    return <Radio value={value} key={value.id} change={updateHandeler}/>;    
                 default:
                    return;
            }
